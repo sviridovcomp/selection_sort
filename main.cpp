@@ -16,9 +16,7 @@ int main() {
         vec[i] = std::pair(static_cast<char>('a' + i), distrib(gen));
     }
 
-    std::sort(vec.begin(), vec.end(), [](auto a, auto b) {
-        return a.second < b.second;
-    });
+    sort::selectionSort(vec.begin(), vec.end());
 
     for (auto &&i : vec) {
         std::cout << i.first << ':' << i.second << '\n';

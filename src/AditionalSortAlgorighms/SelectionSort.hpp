@@ -6,19 +6,16 @@
 #define SELECTION_SORT_SELECTIONSORT_HPP
 
 namespace sort {
-    template<typename RandomAccessIterator, typename Compare>
-    void selectionSort(RandomAccessIterator *first, RandomAccessIterator *last, Compare comp) {
-        for (int *i = first; i < last; i++) {
-            auto minValue = *i;
-            auto *index = i;
-            for (auto *j = i + 1; j < last; j++) {
-                if (comp(*j, minValue)) {
-                    minValue = *j;
-                    index = j;
-                }
-            }
-
-            std::swap(*i, *index);
+    void selectionSort(std::vector<std::pair<char, int>>::iterator begin, std::vector<std::pair<char, int>>::iterator end)
+    {
+        std::vector<std::pair<char, int>>::iterator min;
+        while (begin != end)
+        {
+            min = std::min_element(begin, end, [](const std::pair<char, int> a, const std::pair<char, int> b) {
+                return a.second < b.second;
+            });
+            std::iter_swap(begin, min);
+            ++begin;
         }
     }
 }
